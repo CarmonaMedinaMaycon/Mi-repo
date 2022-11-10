@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular4a';
+  counter: number =0;
+  adding(){
+    this.counter+=1;
+  }
+  minus(){
+    this.counter-=1;
+  }
 }
