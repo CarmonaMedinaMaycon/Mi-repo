@@ -5,7 +5,12 @@
   "projects": {
     "angular4a": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": { 
+        "@schematics/angular:component":{
+          "skipTests":true,
+          "style": "none"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -97,5 +102,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "4a219901-2a58-4e4b-a21d-a5ad1d294846"
   }
 }
