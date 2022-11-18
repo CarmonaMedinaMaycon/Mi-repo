@@ -9,7 +9,8 @@ import { materialModules } from './types/material-modules';
 import { AppRouterModule } from './shared/routers/app-router.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { PersonalModule } from './modules/personal/personal.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CustomHttpInterceptorService } from './services/http-interceptor.service';
 
 @NgModule({
   declarations: [AppComponent, NavigationComponent],
@@ -24,7 +25,11 @@ import { HttpClientModule } from '@angular/common/http';
     PersonalModule,
   ],
   exports: [AppComponent, NavigationComponent],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: CustomHttpInterceptorService,
+    multi:true,
+  }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
