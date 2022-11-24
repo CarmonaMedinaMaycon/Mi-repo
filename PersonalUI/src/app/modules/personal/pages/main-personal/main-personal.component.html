@@ -1,1 +1,69 @@
-<p>main-personal works!</p>
+<mat-card class="mr-5-mb-5">
+
+<mat-card-header class="row">
+
+    <div class="col">
+        <mat-card-title> Personal</mat-card-title>
+        <mat-card-subtitle> Personal</mat-card-subtitle>
+
+    </div>
+
+<div class="col text-end">
+    <button mat-mini-fab color="acent" aria-label="Open register personal"(click)="openDialog('0ms', '0ms')"
+    >
+    <mat-icon>add</mat-icon>
+    </button>
+</div>
+
+</mat-card-header>
+
+<table class="col-12" mat-table [dataSource]="personal"
+matSort
+(matSortChange)="announceSortChange($event)"
+>
+<ng-container matColumnDef="#" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>#</th>
+    <td mat-cell *matCellDef="let element; let i=index">{{i+1}}</td>
+</ng-container>
+
+<ng-container matColumnDef="name" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+    <td mat-cell *matCellDef="let element">{{element.name}}</td>
+</ng-container>
+
+<ng-container matColumnDef="surname" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>surname</th>
+    <td mat-cell *matCellDef="let element">{{element.surname}}</td>
+</ng-container>
+
+<ng-container matColumnDef="lastname" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>lastname</th>
+    <td mat-cell *matCellDef="let element">{{element.lastname}</td>
+</ng-container>
+
+
+<ng-container matColumnDef="birthday" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>birthday</th>
+    <td mat-cell *matCellDef="let element">{{element.birthday}</td>
+</ng-container>
+
+<ng-container matColumnDef="salary" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>salary/th>
+    <td mat-cell *matCellDef="let element">{{element.salary}</td>
+</ng-container>
+
+<ng-container matColumnDef="action" >
+    <th mat-header-cell *matHeaderRowDef>Actions</th>
+    <td mat-cell *matCellDef="let element">Buttons</td>
+</ng-container>
+
+
+
+</table>
+
+<mat-paginator [pageSizeOptions]="[5,10,20]"
+showFirstLastBurrons
+aria-label="select page of periodic elements">
+</mat-paginator>
+</mat-card-content>
+</mat-card>
