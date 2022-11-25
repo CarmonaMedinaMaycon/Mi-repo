@@ -1,0 +1,133 @@
+<form #personalForm="ngForm" novalidate (submit)="savePersonal()">
+    <h2 mat-dialog-title>Register personal</h2>
+<mat-dialog-content class="mat-typography">
+
+<div class="row form-group mb-3">
+    <div class="col">
+        <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput 
+            placeholder="tu nombre"
+            #name="ngModel"
+            name="name"
+            [(ngModel)]="personal.name"
+            
+            required>
+            <mat-error *ngIf="name.invalid">
+                <span *ngIf="name.errors?.['required']">
+                    Campo obligatorio
+                </span>
+
+            </mat-error>
+          </mat-form-field>
+    </div>
+    <div class="col">
+        <mat-form-field appearance="fill">
+            <mat-label>Surname</mat-label>
+            <input matInput 
+            placeholder="tu apellido"
+            #surname="ngModel"
+            name="surname"
+            [(ngModel)]="personal.surname"
+            
+            required>
+            <mat-error *ngIf="surname.invalid">
+                <span *ngIf="surname.errors?.['required']">
+                    Campo obligatorio
+                </span>
+
+            </mat-error>
+          </mat-form-field>
+    </div>
+</div>
+
+<div class="row form-group mb-3">
+    <div class="col">
+        <mat-form-field appearance="fill">
+            <mat-label>LastName</mat-label>
+            <input matInput 
+            placeholder="tu segundoapellido"
+            #lastname="ngModel"
+            name="lastname"
+            [(ngModel)]="personal.lastname"
+            
+            >
+            
+          </mat-form-field>
+    </div>
+    <div class="col">
+        <mat-form-field appearance="fill">
+            <mat-label>Birthday</mat-label>
+            <input matInput
+            type="date" 
+            #birthday="ngModel"
+            name="birthday"
+            [(ngModel)]="personal.birthday"
+            
+            required>
+            <mat-error *ngIf="birthday.invalid">
+                <span *ngIf="birthday.errors?.['required']">
+                    Campo obligatorio
+                </span>
+
+            </mat-error>
+          </mat-form-field>
+    </div>
+</div>
+<div class="row form-group mb-3">
+    <div class="col">
+        <mat-form-field appearance="fill">
+            <mat-label>Salary</mat-label>
+            <input matInput 
+            placeholder="tu salario"
+            type="number"
+            #salary="ngModel"
+            name="name"
+            [(ngModel)]="personal.salary"
+            
+            required>
+            <mat-error *ngIf="salary.invalid">
+                <span *ngIf="salary.errors?.['required']">
+                    Campo obligatorio
+                </span>
+
+            </mat-error>
+          </mat-form-field>
+    </div>
+    <div class="col">
+        <mat-form-field appearance="fill">
+            <mat-label>Position</mat-label>
+            <mat-select required [(ngModel)]="personal.position"
+            #position="ngModel"
+            name="position">
+        
+            <mat-option [value]="">seleccionar posicion</mat-option>
+            <mat-option *ngFor="let position of positions">
+                {{position.position}} - {{position.description}}
+            </mat-option>
+        </mat-select>
+            
+            <mat-error *ngIf="position.invalid">
+                <span *ngIf="position.errors?.['required']">
+                    Campo obligatorio
+                </span>
+
+            </mat-error>
+          </mat-form-field>
+    </div>
+</div>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button type="button" mat-button mat-dialog-close>
+    <mat-icon>times</mat-icon>
+    Cancel
+</button>
+  <button mat-button type="submit" cdkFocusInitial
+  [disabled]="personalForm.invalid">
+    <mat-icon>save</mat-icon>
+    Save
+</button>
+</mat-dialog-actions>
+
+</form>

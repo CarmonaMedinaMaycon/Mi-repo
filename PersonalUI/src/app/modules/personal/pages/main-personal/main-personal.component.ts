@@ -1,11 +1,12 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MathTableDataSource } from '@angular/material/table';
-import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort, Sort } from '@angular/material/sort';
 import { PersonalService } from '../../service/personal.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { Personal } from '../../types/personal';
+import { AddPersonalComponent } from '../add-personal/add-personal.component';
 
 @Component({
   selector: 'app-main-personal',
@@ -23,14 +24,14 @@ displayedColums: String[]=[
 ]; 
 @ViewChild(MatPaginator) paginator!: MatPaginator;
 @ViewChild(MatSort) sort!: MatSort;
-personal!:MathTableDataSource<Personal>;
+personal!:MatTableDataSource<Personal>;
   constructor(private personalService:PersonalService,
     private _liveAnnouncer:LiveAnnouncer,
     public dialog:MatDialog) { }
 
   ngOnInit(): void {
-    this.personalService.findAll().subscribe((Personal[])=>{
-      this.personal = new MathDataSource<Personal>(response);
+    this.personalService.findAll().subscribe((response:Personal[])=>{
+      this.personal = new MatTableDataSource<Personal>(response);
       this.personalService.loading=false;
       this.personal.sort=this.sort;
     });
@@ -45,4 +46,17 @@ personal!:MathTableDataSource<Personal>;
   }
   //Modal
 
+openDialog( enterAnimation:string,
+  exitAnimation:string){
+    const modalRef= this.dialog.open(AddPersonalComponent,{
+      width:"60%",
+      enterAnimationDuration:enterAnimation,
+      exitAnimationDuration:exitAnimation,
+      disableClose:true
+    });
+  
+modalRef.afterClosed().subscribe((result:any)=>{
+  console.log('modal close');
+});
+  }
 }
